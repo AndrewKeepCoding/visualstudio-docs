@@ -41,9 +41,9 @@ Here's a sample.xml to modify:
 ```xml
 <Package xmlns="http://schemas.microsoft.com/appx/manifest/foundation/windows10"
          xmlns:mp="http://schemas.microsoft.com/appx/2014/phone/manifest"
-         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10" >
-<Identity Name="Sample.Product " Publisher="CN=1234" Version="1.0.0.0" />
-<mp:PhoneIdentity PhoneProductId="456" PhonePublisherId="0" />
+         xmlns:uap="http://schemas.microsoft.com/appx/manifest/uap/windows10">
+  <Identity Name="Sample.Product" Publisher="CN=1234" Version="1.0.0.0" />
+  <mp:PhoneIdentity PhoneProductId="456" PhonePublisherId="0" />
 </Package>
 ```
 
@@ -53,19 +53,19 @@ In this example, if you want to modify `/Package/mp:PhoneIdentity/PhoneProductId
 <Project>
   <PropertyGroup>
     <Namespace>
-        <Namespace Prefix="dn" Uri="http://schemas.microsoft.com/appx/manifest/foundation/windows10" />
-        <Namespace Prefix="mp" Uri="http://schemas.microsoft.com/appx/2014/phone/manifest" />
-        <Namespace Prefix="uap" Uri="http://schemas.microsoft.com/appx/manifest/uap/windows10" />
+      <Namespace Prefix="dn" Uri="http://schemas.microsoft.com/appx/manifest/foundation/windows10" />
+      <Namespace Prefix="mp" Uri="http://schemas.microsoft.com/appx/2014/phone/manifest" />
+      <Namespace Prefix="uap" Uri="http://schemas.microsoft.com/appx/manifest/uap/windows10" />
     </Namespace>
-</PropertyGroup>
+  </PropertyGroup>
 
-<Target Name="Poke">
-  <XmlPoke
-    XmlInputPath="Sample.xml"
-    Value="MyId"
-    Query="/dn:Package/mp:PhoneIdentity/@PhoneProductId"
-    Namespaces="$(Namespace)"/>
-</Target>
+  <Target Name="Poke">
+    <XmlPoke
+      XmlInputPath="Sample.xml"
+      Value="MyId"
+      Query="/dn:Package/mp:PhoneIdentity/@PhoneProductId"
+      Namespaces="$(Namespace)" />
+  </Target>
 </Project>
 ```
 
